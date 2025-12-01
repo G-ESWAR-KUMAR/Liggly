@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liggly - Real Fruit. Real Jelly.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Fredoka', sans-serif; }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animations */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+  }
+}
+</script>
+</head>
+<body class="bg-white text-gray-900 selection:bg-pink-200 selection:text-pink-900 antialiased">
+
+    <!-- Navigation -->
+   <!-- NAVBAR -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- Logo -->
+    <a href="#" class="text-3xl font-extrabold tracking-wide 
+      bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 
+      bg-clip-text text-transparent drop-shadow-lg">
+      Liggly
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-10">
+
+      <a href="#products" 
+        class="nav-link text-white/90 font-medium relative">
+        Products
+      </a>
+
+      <a href="#benefits" 
+        class="nav-link text-white/90 font-medium relative">
+        Benefits
+      </a>
+
+      <a href="#reviews" 
+        class="nav-link text-white/90 font-medium relative">
+        Reviews
+      </a>
+
+      <button class="px-6 py-2 rounded-full font-bold 
+        bg-gradient-to-r from-pink-500 to-purple-600
+        text-white shadow-lg shadow-purple-400/30 
+        hover:scale-110 transition-all">
+        Shop Now
+      </button>
+    </div>
+
+    <!-- Mobile Menu Toggle (Checkbox Hack) -->
+    <input type="checkbox" id="menu-toggle" class="hidden peer">
+    <label for="menu-toggle" class="md:hidden cursor-pointer p-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+        fill="none" stroke="white" stroke-width="2">
+        <line x1="4" y1="6" x2="24" y2="6" />
+        <line x1="4" y1="12" x2="24" y2="12" />
+        <line x1="4" y1="18" x2="24" y2="18" />
+      </svg>
+    </label>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="peer-checked:block hidden md:hidden bg-black/70 backdrop-blur-xl 
+    border-t border-white/20 shadow-xl">
+    <div class="flex flex-col p-6 space-y-5">
+
+      <a href="#products" class="text-xl font-bold text-black">Products</a>
+      <a href="#benefits" class="text-xl font-bold text-white">Benefits</a>
+      <a href="#reviews" class="text-xl font-bold text-white">Reviews</a>
+
+      <button class="mt-2 bg-gradient-to-r from-pink-500 to-purple-600 
+        text-white py-3 rounded-xl font-bold shadow-lg">
+        Shop All Jellies
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Extra Styling for Link Hover -->
+<style>
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    background: linear-gradient(to right, #ff4dd2, #8b5cf6);
+    transition: width .35s;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>
+
+
+    <!-- Hero Section -->
+  <!-- Redesigned Hero Section with Background Video -->
+<!-- Redesigned Hero Section with Background Video + Blob Elements -->
+<section id="hero" class="relative w-full h-screen overflow-hidden bg-gradient-to-b from-pink-50 via-purple-50 to-white">
+  <!-- Background Video -->
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+    <source src="your-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60"></div>
+
+  <!-- Animated Blobs -->
+  <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-yellow-200 rounded-full blur-[140px] opacity-20 -translate-y-1/2 translate-x-1/4 animate-blob"></div>
+  <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-pink-200 rounded-full blur-[140px] opacity-20 translate-y-1/4 -translate-x-1/4 animate-blob animation-delay-2000"></div>
+  <div class="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-purple-200 rounded-full blur-[140px] opacity-20 -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000"></div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
+    <!-- Floating Tag -->
+    <div class="inline-block px-4 py-2 rounded-full bg-white/80 backdrop-blur border border-pink-100 shadow-sm mb-6 animate-bounce">
+      <span class="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent font-bold text-sm uppercase tracking-wider">
+        New: Cuggly Bites
+      </span>
+    </div>
+
+    <h1 class="text-6xl md:text-7xl font-black text-white drop-shadow-xl leading-[0.9] mb-8 font-heading">
+      Real <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-red-500">Fruit.</span><br>
+      Real <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-500">Jelly.</span>
+    </h1>
+
+    <p class="text-xl md:text-2xl text-white/90 max-w-2xl mb-10 font-light leading-relaxed">
+      Taste the future of fun, fruity, melt-in-mouth jelly treats made with real fruit pulp. 100% vegan & plant-based.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#products" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-200">
+        Explore Products
+      </a>
+      <a href="#about" class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-red-500 text-white rounded-full font-bold text-lg hover:opacity-90 transition shadow-xl">
+        Our Story
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-16 flex gap-8 justify-center text-white">
+      <div class="text-center">
+        <p class="text-3xl font-black">100%</p>
+        <p class="text-sm uppercase tracking-wide opacity-80">Vegan</p>
+      </div>
+      <div class="w-px bg-white/40 h-12"></div>
+      <div class="text-center">
+        <p class="text-3xl font-black">0%</p>
+        <p class="text-sm uppercase tracking-wide opacity-80">Junk</p>
+      </div>
+      <div class="w-px bg-white/40 h-12"></div>
+      <div class="text-center">
+        <p class="text-3xl font-black">Real</p>
+        <p class="text-sm uppercase tracking-wide opacity-80">Fruit Pulp</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce opacity-80">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12l7 7 7-7" />
+    </svg>
+  </div>
+</section>
+
+<!-- Blob Animation Styles -->
+<style>
+  @keyframes blob {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  .animate-blob {
+    animation: blob 12s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+</style>
+    <!-- Marquee -->
+    <div class="relative py-8 bg-black overflow-hidden transform -skew-y-2">
+        <div class="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 opacity-20"></div>
+        <div class="flex whitespace-nowrap animate-marquee items-center w-[200%]">
+            <!-- Repeated Text Block -->
+            <div class="flex items-center space-x-8 mx-4">
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">Real Fruit Pulp</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">No Oil</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">100% Vegan</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">No Processed Sugars</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                 <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">Gluten Free</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">No Colors</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">No Artificial Flavours</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="text-4xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-widest">Dairy Free</span>
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Insider / Philosophy -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black font-heading text-gray-900 mb-6">
+                    You deserve the best.<br>
+                    You deserve <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">Liggly.</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Clean, modern jelly made from real fruit pulp. No guilt, just fun.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 h-auto md:h-[600px]">
+                <!-- Main Visual -->
+                <div class="md:col-span-2 relative rounded-[2rem] overflow-hidden group h-[400px] md:h-full">
+                    <video src="video.mp4" 
+       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+       autoplay
+       loop
+       muted
+       playsinline>
+</video>
+
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                       
+                    </div>
+                    <div class="absolute bottom-8 left-8 text-white max-w-sm">
+                        <p class="font-bold text-xl font-heading mb-1">See the difference</p>
+                        <p class="text-sm opacity-90">Watch how we extract pure pulp.</p>
+                    </div>
+                </div>
+
+                <!-- Side Visuals -->
+                <div class="grid grid-cols-1 gap-6 h-[400px] md:h-full">
+                    <div class="relative rounded-[2rem] overflow-hidden bg-pink-100 flex items-center justify-center p-8 group">
+                         <div class="relative z-10 text-center">
+                             <h3 class="text-5xl font-black text-pink-500 mb-2 font-heading">0g</h3>
+                             <p class="text-gray-700 font-bold text-xl">Added Oil</p>
+                             <p class="text-gray-500 mt-2">No trans fats.</p>
+                         </div>
+                         <img src="3.jpg" class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-multiply transition-transform duration-700 group-hover:scale-110" alt="Texture">
+                    </div>
+                    
+                    <div class="relative rounded-[2rem] overflow-hidden group">
+                        <img src="5.png" alt="Kids loving it" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-white/90 px-4 py-2 rounded-full text-xs font-bold text-gray-900 shadow-md">
+                            Kid Approved 🎈
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits (Sticky Cards) -->
+    <section id="benefits" class="relative py-24 bg-gradient-to-b from-white via-indigo-50 to-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-black font-heading text-gray-900 mb-4">Why Liggly?</h2>
+                <p class="text-gray-600">The healthier way to jelly.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-gray-100 text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 bg-gradient-to-br from-orange-400 to-red-400 text-white shadow-lg group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 font-heading">Real Pulp</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Natural taste, vitamins, and antioxidants instead of artificial syrups.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-gray-100 text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 bg-gradient-to-br from-pink-400 to-purple-400 text-white shadow-lg group-hover:scale-110 transition-transform">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 font-heading">Zero Junk</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">No processed sugar. Sweetness comes from fruits and natural sources.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-gray-100 text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 bg-gradient-to-br from-green-400 to-teal-500 text-white shadow-lg group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M12 2v20"/><path d="M2 12h20"/><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 font-heading">100% Vegan</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">No dairy, no lactose, no animal gelatin. Pure plant-based goodness.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-gray-100 text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 bg-gradient-to-br from-yellow-400 to-orange-500 text-white shadow-lg group-hover:scale-110 transition-transform">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 font-heading">Energy Boost</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Perfect for kids, fitness lovers, and anyone who wants clean indulgence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+<section id="products" class="py-24 bg-white overflow-hidden"> 
+  <div class="container mx-auto px-6 mb-8 flex flex-col md:flex-row items-end justify-between gap-6">
+    <div>
+      <h2 class="text-5xl font-black font-heading text-gray-900 mb-4">
+        What's your <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">vibe?</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-lg">
+        From chilled popsicles to bite-sized cubes, we have a jelly format for every mood.
+      </p>
+    </div>
+
+    <!-- Arrows (optional) -->
+    <div class="hidden md:flex items-center gap-2">
+      <button id="prod-prev" aria-label="scroll left" class="px-3 py-2 rounded-full bg-white/90 shadow">◀</button>
+      <button id="prod-next" aria-label="scroll right" class="px-3 py-2 rounded-full bg-white/90 shadow">▶</button>
+    </div>
+  </div>
+
+  <!-- Horizontal Scroll Snap Wrapper -->
+  <div class="relative w-full px-6">
+    <div id="product-track"
+         class="flex gap-6 max-w-full overflow-x-auto no-scrollbar snap-x snap-mandatory"
+         style="-webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
+
+      <!-- Product card (repeat for each product) -->
+      <div class="snap-center shrink-0 w-[300px] md:w-[400px] h-[550px] rounded-[2.5rem] relative overflow-hidden group cursor-pointer transition-all hover:scale-[1.01]">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-300 to-red-400 transition-opacity"></div>
+        <div class="relative z-10 h-full flex flex-col p-8">
+          <div class="flex-1 flex items-center justify-center">
+            <img src="6.png" alt="Jelly Popsicle" class="w-48 h-48 object-cover rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-500 rotate-12 group-hover:rotate-0 border-4 border-white/30">
+          </div>
+          <div class="mt-auto bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl p-6">
+            <h3 class="text-3xl font-bold font-heading text-white mb-2">Jelly Popsicle</h3>
+            <p class="text-white/90 font-medium mb-4 leading-snug">Refreshing, fruit-pulp based popsicles that feel like a chilled juice on a stick.</p>
+            <button class="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold w-full flex items-center justify-center gap-2 group-hover:bg-gray-900 group-hover:text-white transition-colors">
+              Shop Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="snap-center shrink-0 w-[300px] md:w-[400px] h-[550px] rounded-[2.5rem] relative overflow-hidden group cursor-pointer transition-all hover:scale-[1.01]">
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-200 to-amber-700 transition-opacity"></div>
+        <div class="relative z-10 h-full flex flex-col p-8">
+          <div class="flex-1 flex items-center justify-center">
+            <img src="7.png" alt="Jelly Coffee" class="w-48 h-48 object-cover rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-500 -rotate-6 group-hover:rotate-0 border-4 border-white/30">
+          </div>
+          <div class="mt-auto bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl p-6">
+            <h3 class="text-3xl font-bold font-heading text-white mb-2">Jelly Coffee</h3>
+            <p class="text-white/90 font-medium mb-4 leading-snug">A playful twist where smooth coffee meets soft vegan jelly.</p>
+            <button class="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold w-full flex items-center justify-center gap-2 group-hover:bg-gray-900 group-hover:text-white transition-colors">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="snap-center shrink-0 w-[300px] md:w-[400px] h-[550px] rounded-[2.5rem] relative overflow-hidden group cursor-pointer transition-all hover:scale-[1.01]">
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-300 to-purple-500 transition-opacity"></div>
+        <div class="relative z-10 h-full flex flex-col p-8">
+          <div class="flex-1 flex items-center justify-center">
+            <img src="8.png" alt="Cuggly Bites" class="w-48 h-48 object-cover rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-500 rotate-12 group-hover:rotate-0 border-4 border-white/30">
+          </div>
+          <div class="mt-auto bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl p-6">
+            <h3 class="text-3xl font-bold font-heading text-white mb-2">Cuggly Bites</h3>
+            <p class="text-white/90 font-medium mb-4 leading-snug">Cute, small jelly cubes shaped like bite-sized chocolates.</p>
+            <button class="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold w-full flex items-center justify-center gap-2 group-hover:bg-gray-900 group-hover:text-white transition-colors">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="snap-center shrink-0 w-[300px] md:w-[400px] h-[550px] rounded-[2.5rem] relative overflow-hidden group cursor-pointer transition-all hover:scale-[1.01]">
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow-200 via-pink-300 to-red-400 transition-opacity"></div>
+        <div class="relative z-10 h-full flex flex-col p-8">
+          <div class="flex-1 flex items-center justify-center">
+            <img src="11.png" alt="Jelly Cake" class="w-48 h-48 object-cover rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-500 -rotate-6 group-hover:rotate-0 border-4 border-white/30">
+          </div>
+          <div class="mt-auto bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl p-6">
+            <h3 class="text-3xl font-bold font-heading text-white mb-2">Jelly Cake</h3>
+            <p class="text-white/90 font-medium mb-4 leading-snug">A colourful, soft, jelly-layered dessert made primarily from fruit pulp.</p>
+            <button class="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold w-full flex items-center justify-center gap-2 group-hover:bg-gray-900 group-hover:text-white transition-colors">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- spacer so last item can center nicely -->
+      <div class="w-6 md:w-[max(1.5rem,calc((100vw-1280px)/2))]"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Arrow button behavior (works with the track above)
+  (function () {
+    const track = document.getElementById('product-track');
+    const next = document.getElementById('prod-next');
+    const prev = document.getElementById('prod-prev');
+
+    // Scroll amount per click (adjust)
+    const scrollAmount = Math.min(window.innerWidth * 0.8, 900);
+
+    if (next) next.addEventListener('click', () => track.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
+
+    // Optional: clicking a card centers it
+    track.querySelectorAll('.snap-center').forEach(card => {
+      card.addEventListener('click', () => {
+        const left = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+        track.scrollTo({ left, behavior: 'smooth' });
+      });
+    });
+  })();
+</script>
+                <!-- Spacer -->
+                <div class="w-6 md:w-[max(1.5rem,calc((100vw-1280px)/2))]"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section id="reviews" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <img src="10.jpg" alt="Fresh Fruit" class="rounded-[2.5rem] shadow-xl w-full rotate-2 hover:rotate-0 transition-transform duration-700 object-cover h-[600px]">
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-4xl lg:text-5xl font-black font-heading text-gray-900 mb-4">
+                        More for <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">you.</span><br>
+                        Less of the bad stuff.
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-10">See why Liggly is the smarter choice for your sweet cravings.</p>
+
+                    <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="grid grid-cols-3 bg-gray-900 text-white p-6 font-bold text-lg">
+                            <div>Benefit</div>
+                            <div class="text-center text-pink-300">Liggly</div>
+                            <div class="text-center text-gray-400 text-sm md:text-lg">Regular</div>
+                        </div>
+                        
+                        <!-- Row 1 -->
+                        <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center bg-white">
+                            <div class="font-bold text-gray-700">Real Fruit Pulp</div>
+                            <div class="flex justify-center"><div class="bg-green-100 p-1 rounded-full"><svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                            <div class="flex justify-center"><div class="bg-red-100 p-1 rounded-full"><svg class="text-red-500 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
+                        </div>
+                        <!-- Row 2 -->
+                        <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center bg-gray-50">
+                            <div class="font-bold text-gray-700">0% Sugar</div>
+                            <div class="flex justify-center"><div class="bg-green-100 p-1 rounded-full"><svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                            <div class="flex justify-center"><div class="bg-red-100 p-1 rounded-full"><svg class="text-red-500 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
+                        </div>
+                        <!-- Row 3 -->
+                        <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center bg-white">
+                            <div class="font-bold text-gray-700">Vegan</div>
+                            <div class="flex justify-center"><div class="bg-green-100 p-1 rounded-full"><svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                            <div class="flex justify-center"><div class="bg-red-100 p-1 rounded-full"><svg class="text-red-500 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
+                        </div>
+                        <!-- Row 4 -->
+                        <div class="grid grid-cols-3 p-6 items-center bg-gray-50">
+                            <div class="font-bold text-gray-700">No Artif. Color</div>
+                            <div class="flex justify-center"><div class="bg-green-100 p-1 rounded-full"><svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                            <div class="flex justify-center"><div class="bg-red-100 p-1 rounded-full"><svg class="text-red-500 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-20 pb-10 rounded-t-[3rem] mt-10">
+        <div class="container mx-auto px-6">
+            
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-4xl font-black font-heading mb-6 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">Liggly</h2>
+                    <p class="text-gray-400 text-lg max-w-sm mb-8">
+                        Real Fruit. Real Jelly. Zero Junk. The modern way to treat yourself.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-500 transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sky-400 transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white font-heading">Shop</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Jelly Popsicles</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Jelly Coffee</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Cuggly Bites</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Jelly Cakes</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Bundles</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white font-heading">Company</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Our Story</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Ingredients</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Wholesale</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2024 Liggly. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Minimal Scripts for Interactivity -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
